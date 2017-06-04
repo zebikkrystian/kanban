@@ -1,0 +1,66 @@
+html, body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+*{
+    margin:0;
+    padding:0;
+}
+
+
+nav#menu{
+    height: 3rem;
+    background-color: aquamarine;
+    padding: 0.5rem 2rem 0.5rem 2rem;
+    box-sizing: border-box;
+}
+
+nav#menu ul {
+    overflow:auto;
+}
+
+nav#menu ul li {
+    float: left;
+    height:2rem;
+    line-height:2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-right: 2rem;
+    border: 1px solid red;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+
+
+
+section#content{
+    overflow:auto;
+}
+
+.list{
+    float: left;
+    width: 33.3%;
+    height: 200px;
+    box-sizing:border-box;
+    padding: 2rem;
+}
+
+#list_todo{
+    padding-right: 1rem;
+}
+
+#list_current {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+#list_done {
+    padding-left: 1rem;
+}
+
+.list > .list_content{
+    background-color: gray;
+    height: 100%;
+}
