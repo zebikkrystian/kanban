@@ -32,6 +32,11 @@ nav#menu ul li {
     font-weight: bold;
 }
 
+    nav#menu ul li.tab[data-active="yes"] {
+        color: red;
+        background-color: yellow;
+    }
+
 
 
 
@@ -42,7 +47,6 @@ section#content{
 .list{
     float: left;
     width: 33.3%;
-    height: 200px;
     box-sizing:border-box;
     padding: 2rem;
 }
@@ -63,4 +67,5 @@ section#content{
 .list > .list_content{
     background-color: gray;
     height: 100%;
+    padding: 2rem;
 }
