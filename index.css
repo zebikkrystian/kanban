@@ -1,17 +1,17 @@
-html,body{
+html, body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
     background-color: #837171;
-    height:100%;
+    height: 100%;
 }
 
-*{
-    margin:0;
-    padding:0;
+* {
+    margin: 0;
+    padding: 0;
 }
 
-ul{
-    list-style:none;
+ul {
+    list-style: none;
 }
 
 
@@ -24,63 +24,73 @@ nav#menu {
 }
 
     nav#menu ul {
-        float:left;
-    }
-
-    nav#menu ul li {
         float: left;
-        height: 3rem;
-        line-height: 3rem;
-        padding-left: 1rem;
-        padding-right: 1rem;
-        border-top-right-radius: 10px;
-        min-width: 10rem;
-        text-align: center;
-        cursor: pointer;
-        box-sizing:border-box;
     }
 
-    nav#menu ul li.tab[data-active="yes"] {
-        font-weight: bold;
-        color:black;
-        border-bottom:none;
-        
-    }
+        nav#menu ul li {
+            float: left;
+            height: 3rem;
+            line-height: 3rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            border-top-right-radius: 10px;
+            min-width: 10rem;
+            text-align: center;
+            cursor: pointer;
+            box-sizing: border-box;
+            background-color: gray;
+        }
 
-    nav#menu ul li:hover {
-        color: black;
-        font-weight:bold;
-    }
+            nav#menu ul li.tab[data-active="yes"] {
+                font-weight: bold;
+            }
 
-    nav#menu #tab_add{
-        float:left;
-        height:2rem;
-        line-height:2rem;
-        width: 2rem;
-        margin: 0.5rem;
-        font-size: 45px;
-        color:green;
-        border:none;
-        border-radius: 5px;
-        background-color:aqua
-    }
+            nav#menu ul li:hover {
+                font-weight: bold;
+            }
 
-
-
-section#content{
-    overflow:auto;
-    margin: 0 2rem 0 2rem;
-    min-height:calc(100% - 4rem);
+#tab_add,
+#tasks_add {
+    font-size: 45px;
+    border: none;
+    border-radius: 5px;
+    font-size: 45px;
+    cursor: pointer;
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
 }
 
-.list{
+#tab_add {
+    margin: 0.5rem;
+}
+
+    #tab_add:hover,
+    #tasks_add:hover {
+        background-color: #204d74;
+        border-color: #122b40;
+    }
+
+
+
+
+section#content {
+    overflow: auto;
+    margin: 0 2rem 0 2rem;
+    min-height: calc(100% - 4rem);
+}
+
+.list {
     float: left;
     width: 33.3%;
-    box-sizing:border-box;
+    box-sizing: border-box;
     padding: 2rem;
 }
 
-#list_todo{
+#list_todo {
     padding-right: 1rem;
 }
 
@@ -93,14 +103,34 @@ section#content{
     padding-left: 1rem;
 }
 
-.list > .list_content{
-    background-color: gray;
+.list > .list_content {
+    background-color: #E2E4E6;
     height: 100%;
     padding: 2rem;
+    color: #585858;
 }
 
+    .list > .list_content h3 {
+        margin-bottom: 1rem;
+    }
 
-.popup{
+.tasks {
+    min-height: 2rem;
+}
+
+    .tasks li {
+        padding: 1rem;
+        margin-bottom: 0.5rem;
+        background-color: #FFFFFF;
+        cursor: pointer;
+    }
+
+        .tasks li:hover {
+            font-weight: bold;
+        }
+
+
+.popup {
     display: none;
     position: fixed;
     width: 300px;
@@ -112,14 +142,14 @@ section#content{
     z-index: 11111;
 }
 
-.popup input{
-    padding: 5px;
-    border-radius: 3px;
-    border: 1px solid #084162;
-    width: 100%;
-    margin: 1rem 0 1rem 0;
-    box-sizing: border-box;
-}
+    .popup input {
+        padding: 5px;
+        border-radius: 3px;
+        border: 1px solid #084162;
+        width: 100%;
+        margin: 1rem 0 1rem 0;
+        box-sizing: border-box;
+    }
 
     .popup button {
         display: block;
@@ -130,21 +160,20 @@ section#content{
         color: white;
         cursor: pointer;
         width: 45%;
-
     }
 
-    .popup button.save{
-        float: left;
-    }
+        .popup button.save {
+            float: left;
+        }
 
         .popup button.delete {
             background-color: #6f1414;
             float: right;
         }
 
-    .popup button:hover {
-        font-weight:bold;
-    }
+        .popup button:hover {
+            font-weight: bold;
+        }
 
     .popup .exit {
         position: absolute;
@@ -154,16 +183,16 @@ section#content{
     }
 
 
-button.delete{
+button.delete {
     display: none;
 }
 
 #shadow {
-    display:none;
+    display: none;
     background-color: rgba(0,0,0,0.5);
     position: fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
