@@ -200,6 +200,9 @@
         deactivateTabs();
         tab.setAttribute("data-active", "yes");
         setTabState(tab.innerText);
+        $(".tasks li").dblclick(function () {
+            editTaskName(this);
+        });
     }
 
     function editTabName(tab) {
@@ -309,7 +312,7 @@
         [].forEach.call(tabBtns, function (btn) {
 
             btn.addEventListener("dblclick", function () {
-                editTab(this);
+                editTabName(this);
             });
 
             btn.addEventListener("click", function () {
