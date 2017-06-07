@@ -1,6 +1,8 @@
-html, body {
+html,body{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
+    background-color: #837171;
+    height:100%;
 }
 
 *{
@@ -8,40 +10,67 @@ html, body {
     padding:0;
 }
 
+ul{
+    list-style:none;
+}
 
-nav#menu{
-    height: 3rem;
-    background-color: aquamarine;
-    padding: 0.5rem 2rem 0.5rem 2rem;
+
+nav#menu {
+    height: 3.5rem;
+    background-color: rgba(0,0,0,0.1);
+    padding: 0.5rem 2rem 0 2rem;
     box-sizing: border-box;
+    color: #f3f3f3;
 }
 
-nav#menu ul {
-    overflow:auto;
-}
-
-nav#menu ul li {
-    float: left;
-    height:2rem;
-    line-height:2rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    margin-right: 2rem;
-    border: 1px solid red;
-    border-radius: 5px;
-    font-weight: bold;
-}
-
-    nav#menu ul li.tab[data-active="yes"] {
-        color: red;
-        background-color: yellow;
+    nav#menu ul {
+        float:left;
     }
 
+    nav#menu ul li {
+        float: left;
+        height: 3rem;
+        line-height: 3rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        border-top-right-radius: 10px;
+        min-width: 10rem;
+        text-align: center;
+        cursor: pointer;
+        box-sizing:border-box;
+    }
+
+    nav#menu ul li.tab[data-active="yes"] {
+        font-weight: bold;
+        color:black;
+        border-bottom:none;
+        
+    }
+
+    nav#menu ul li:hover {
+        color: black;
+        font-weight:bold;
+    }
+
+    nav#menu #tab_add{
+        float:left;
+        height:2rem;
+        line-height:2rem;
+        width: 2rem;
+        margin: 0.5rem;
+        font-size: 45px;
+        color:green;
+        border:none;
+        border-radius: 5px;
+        background-color:aqua
+    }
 
 
 
 section#content{
     overflow:auto;
+    margin: 0 2rem 0 2rem;
+    min-height:calc(100% - 4rem);
 }
 
 .list{
@@ -68,4 +97,73 @@ section#content{
     background-color: gray;
     height: 100%;
     padding: 2rem;
+}
+
+
+.popup{
+    display: none;
+    position: fixed;
+    width: 300px;
+    left: calc(50% - 150px);
+    top: calc(50% - 92px);
+    background-color: white;
+    padding: 2rem;
+    text-align: center;
+    z-index: 11111;
+}
+
+.popup input{
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid #084162;
+    width: 100%;
+    margin: 1rem 0 1rem 0;
+    box-sizing: border-box;
+}
+
+    .popup button {
+        display: block;
+        padding: 8px;
+        border-radius: 3px;
+        border: 1px solid #084162;
+        background-color: #1080e0;
+        color: white;
+        cursor: pointer;
+        width: 45%;
+
+    }
+
+    .popup button.save{
+        float: left;
+    }
+
+        .popup button.delete {
+            background-color: #6f1414;
+            float: right;
+        }
+
+    .popup button:hover {
+        font-weight:bold;
+    }
+
+    .popup .exit {
+        position: absolute;
+        top: 1rem;
+        cursor: pointer;
+        right: 1rem;
+    }
+
+
+button.delete{
+    display: none;
+}
+
+#shadow {
+    display:none;
+    background-color: rgba(0,0,0,0.5);
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
 }

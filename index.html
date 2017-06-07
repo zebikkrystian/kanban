@@ -11,13 +11,13 @@
 <body>
     <nav id="menu">
         <ul id="tabs">
-            <li class="tab" data-active="yes">Praca</li>
-            <li class="tab">Szkoła</li>
-            <li class="tab">Dom</li>
-            <li id="tab_add">+</li>
+            <li class="tab" data-active="yes" color="red" style="background-color:#0079BF">Praca</li>
+            <li class="tab" style="background-color:#D7A359">Szkoła</li>
+            <li class="tab" style="background-color:#CD5A91">Dom</li>
         </ul>
+        <button id="tab_add">+</button>
     </nav>
-    <section id="content">
+    <section id="content" style="background-color:#0079BF">
         <div id="list_todo" class="list">
             <div class="list_content">
                 <h3>Do zrobienia</h3>
@@ -41,6 +41,25 @@
             </div>
         </div>
     </section>
+    <div id="table_editor" class="popup">
+        <section>
+            <label>Nazwa tabeli:</label>
+            <input type="text" name="Name"/>
+            <button class="save">Zapisz</button>
+        </section>
+        <span class="exit">X</span>
+    </div>
+    <div id="task_editor" class="popup">
+        <section>
+            <input type="text" name="Name" placeholder="treść zadania"/>
+            <div>
+                <button class="save">Zapisz</button>
+                <button class="delete">Usuń</button>
+            </div>
+        </section>
+        <span class="exit">X</span>
+    </div>
+    <div id="shadow"></div>
     <script src="index.js"></script>
 </body>
 </html>

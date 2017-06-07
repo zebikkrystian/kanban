@@ -61,41 +61,10 @@
         },
     ];
 
+    
+    
 
-
-
-    var addTabBtn = document.getElementById('tab_add');
-    addTabBtn.addEventListener("click", function () {
-        var tabs = document.getElementById("tabs");
-        var li = document.createElement("li");
-        li.setAttribute("class", "tab");
-        li.innerText = "Test tab";
-        tabs.appendChild(li);
-        li.addEventListener("click", function (event, btn) {
-            deactivateTabs();
-            this.setAttribute("data-active", "yes");
-            setTabState(this.innerText);
-        });
-        alert("Add tab");
-    });
-
-    var addTaskBtn = document.getElementById('tasks_add');
-    addTaskBtn.addEventListener("click", function () {
-        var tasks = document.querySelector(".tasks[data-id='tasksTodo']");
-        var li = document.createElement("li");
-        li.innerText = "Test";
-        tasks.appendChild(li);
-        saveTabState(getCurrentTabId());
-    });
-
-    var tabBtns = document.getElementsByClassName('tab');
-    [].forEach.call(tabBtns, function (btn) {
-        btn.addEventListener("click", function (event, btn) {
-            deactivateTabs();
-            this.setAttribute("data-active", "yes");
-            setTabState(this.innerText);
-        });
-    });
+    
 
     function deactivateTabs() {
         var tabBtns = document.getElementsByClassName('tab');
@@ -162,14 +131,165 @@
         return tab.innerText;
     }
 
-    $(".tasks").sortable({
-        connectWith: ".tasks",
-        stop: function (event, ui) {
-            console.log("stop");
-            saveTabState(getCurrentTabId());
-            console.log(data);
-        }
-    }).disableSelection();
+    var editTab = null;
+    var editTask = null;
 
+    function showTableEditor() {
+        var form = document.getElementById("table_editor");
+        var input = form.querySelector("input");
+        if (editTab) {
+
+            input.value = editTab.innerText;
+        }
+
+        $(form).show();
+        $('#shadow').show();
+    }
+
+    function showTaskEditor() {
+        var form = document.getElementById("task_editor");
+        var input = form.querySelector("input");
+        if (editTask) {
+            input.value = editTask.innerText;
+        }
+
+        $(form).show();
+        $('#shadow').show();
+    }
+    
+
+    function bindEvents() {
+        var addTabBtn = document.getElementById('tab_add');
+        addTabBtn.addEventListener("click", function () {
+
+            $("button.delete").hide();
+            showTableEditor();
+        });
+
+        var addTaskBtn = document.getElementById('tasks_add');
+        addTaskBtn.addEventListener("click", function () {
+
+            $("button.delete").hide();
+            showTaskEditor();
+        });
+
+        $(".tasks li").dblclick(function() {
+            editTask = this;
+            $("button.delete").show();
+            showTaskEditor();
+        });
+
+        var tabBtns = document.getElementsByClassName('tab');
+        [].forEach.call(tabBtns, function (btn) {
+
+            btn.addEventListener("dblclick", function () {
+                editTab = this;
+                showTableEditor();
+            });
+
+            btn.addEventListener("click", function (event, btn) {
+                deactivateTabs();
+                this.setAttribute("data-active", "yes");
+                setTabState(this.innerText);
+            });
+
+
+        });
+
+        $(".popup .exit").click(function () {
+            var popup = $(".popup");
+            popup.hide();
+            $('#shadow').hide();
+            $(".popup input").val("");
+        });
+
+        $("#table_editor button.save").click(function (e) {
+            var form = document.getElementById("table_editor");
+            var input = form.querySelector("input");
+            if (input.value.trim().length === 0) {
+                alert("Nie wprowadzono wartości!");
+                return;
+            }
+
+            if (input.value.trim().length > 20) {
+                alert("Max 20 znaków");
+                return;
+            }
+            var tabs = document.getElementById("tabs");
+            if (editTab) {
+                editTab.innerText = input.value;
+                editTab = null;
+            }
+            else {
+                var li = document.createElement("li");
+                li.setAttribute("class", "tab");
+                li.innerText = input.value.trim();
+                tabs.appendChild(li);
+                li.addEventListener("click", function (event, btn) {
+                    deactivateTabs();
+                    this.setAttribute("data-active", "yes");
+                    setTabState(this.innerText);
+                });
+                
+            }
+            input.value = '';
+            $('#shadow').hide();
+            $(form).hide();
+        });
+
+        $("#task_editor button.save").click(function (e) {
+            var form = document.getElementById("task_editor");
+            var input = form.querySelector("input");
+            if (input.value.trim().length === 0) {
+                alert("Nie wprowadzono wartości!");
+                return;
+            }
+
+            if (input.value.trim().length > 50) {
+                alert("Max 50 znaków");
+                return;
+            }
+            var tasks = document.querySelector(".tasks[data-id='tasksTodo']");
+            if (editTask) {
+                editTask.innerText = input.value.trim();
+                editTask = null;
+            }
+            else {
+                
+                var li = document.createElement("li");
+                li.innerText = input.value.trim();
+                tasks.appendChild(li);
+                li.addEventListener("dblclick", function () {
+                    editTask = this;
+                    showTaskEditor();
+                });
+                
+            }
+            input.value = '';
+            $('#shadow').hide();
+            $(form).hide();
+            saveTabState(getCurrentTabId());
+        });
+
+        $("#task_editor button.delete").click(function (e) {
+            var form = document.getElementById("task_editor");
+            $(editTask).remove();
+            $(form).hide();
+            saveTabState(getCurrentTabId());
+        });
+
+        $(".tasks").sortable({
+            connectWith: ".tasks",
+            stop: function (event, ui) {
+                console.log("stop");
+                saveTabState(getCurrentTabId());
+                console.log(data);
+            }
+        }).disableSelection();
+    }
+
+    
     setTabState(getCurrentTabId());
+    bindEvents();
+    
 })();
